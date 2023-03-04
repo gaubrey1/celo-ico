@@ -898,3 +898,21 @@ export default function Home() {
   );
 }
 ```
+
+Now create a new folder under the my-app folder and name it `constants`. In the `constants` folder create a file called `index.js` and paste the following code:
+
+```js
+export const mintifyNftAbi = "abi-of-your-nft-contract";
+export const mintifyNftAddress = "address-of-your-nft-contract";
+export const mintifyTokenAbi = "abi-of-your-token-contract";
+export const mintifyTokenAddress = "address-of-your-token-contract";
+```
+
+Replace "abi-of-your-nft-contract" and "address-of-your-nft-contract" with the abi and address of the NFT contract that you deployed respectively. This can be found in the `mintifyNft` folder located in the `hardhat` folder.
+
+Replace "abi-of-your-token-contract" by the abi of the token contract. To get the abi of the Token contract, go to hardhat-tutorial/artifacts/contracts/CryptoDevToken.sol and then fromCryptoDevToken.json file get the array marked under the "abi" key.
+Replace "address-of-your-token-contract" with the address of the token contract that you saved to your notepad earlier in the tutorial.
+Now in your terminal which is pointing to my-app folder, execute the following:
+
+npm run dev
+Your ICO dapp should now work without errors 🚀
