@@ -892,7 +892,7 @@ export default function Home() {
       </div>
 
       <footer className="footer">
-        Made with &#10084; by Crypto Devs
+        Made with &#10084; by Mintify
       </footer>
     </div>
   );
