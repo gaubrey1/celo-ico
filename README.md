@@ -1,5 +1,5 @@
-# celo-ico
-An initial coin offering for a minted NFT
+# BUILDING AN INITIAL COIN OFFERING(ICO) ON THE CELO BLOCKCHAIN USING REACT.JS
+
 
 ## Introduction
 Welcome to this step-by-step tutorial on creating an Initial Coin Offering (ICO) for a minted NFT on the Celo blockchain using React. In this tutorial, we will guide you through the process of creating two tokens; an ERC-721 token and an ERC-20 token on the Celo blockchain, building a smart contract to manage the ICO and NFT, and creating a web interface using React to interact with the smart contract and launch your ICO as well as the NFT.
