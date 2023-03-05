@@ -1,0 +1,59 @@
+.main {
+  min-height: 90vh;
+  display: flex;
+  padding: 0px 20px;
+  gap: 20px 10%;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 16px;
+}
+.header {
+  width: 50%;
+}
+
+.footer {
+  display: flex;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 400px;
+  height: 50%;
+}
+
+.title {
+  font-size: 3rem;
+  margin: 2rem 0;
+}
+
+.description {
+  line-height: 1.5;
+  margin: 2rem 0;
+  font-size: 1.3rem;
+}
+
+.button {
+  border-radius: 4px;
+  background-color: blue;
+  border: none;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 20px;
+  width: 200px;
+  cursor: pointer;
+  margin-bottom: 2%;
+  margin-right: 10px;
+}
+@media (max-width: 1000px) {
+  .main {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
