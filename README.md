@@ -60,7 +60,7 @@ We will use the following tools and languages in this tutorial
 - React
 
 ## Table of Content
-1. [Smart contract development](#smart-contract-development)
+1. [Smart contract development](#step-1:-smart-contract-development)
 2. [Deploy smart contract](#deploy-smart-contract)
 3. [Building the frontend](#building-the-frontend-with-vue)
 4. [Pushing code to Github](#pushing-code-to-github)
