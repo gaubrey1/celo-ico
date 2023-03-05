@@ -43,8 +43,8 @@ To follow along with this tutorial, you should have a basic understanding of Rea
 
 ## Prerequisites
 - This tutorial assumes that you have some basic knowledge of Solidity and React.
-- You can write code in Vue.js
-- Have metamask extension wallet installed and set up. If not, install [MetamaskExtensionWallet](https://chrome.google.com/webstore/detail/celoextensionwallet/kkilomkmpmkbdnfelcpgckmpcaemjcdh?hl=en) from Google Chrome store
+- You can write code in [React.js](https://reactjs.org/)
+- Have metamask extension wallet installed and set up. If not, install [MetamaskExtensionWallet](https://metamask.io/)
 - [Nodejs](https://nodejs.org/) installed on your machine.
 - An IDE such as [Vscode](https://code.visualstudio.com/) or Sublime text.
 - [RemixIDE](https://remix.ethereum.org/)
@@ -53,7 +53,7 @@ To follow along with this tutorial, you should have a basic understanding of Rea
 
 ## Tech Stack
 We will use the following tools and languages in this tutorial
-- Hardhat
+- [Hardhat](https://hardhat.org/)
 - VSCode
 - A web browser
 - Solidity
@@ -65,6 +65,7 @@ We will use the following tools and languages in this tutorial
 3. [Building the frontend](#building-the-frontend-with-vue)
 4. [Pushing code to Github](#pushing-code-to-github)
 5. [Delpoying to vercel](#deploying-to-vercel)
+6. [Conclusion](#conclusion)
 
 ## Step 1: Smart Contract Development
 In this section of this tutorial, we will be developing the smart contract for the ICO and the NFT. To build the smart contract we would be using [Hardhat](https://hardhat.org/). Hardhat is an Ethereum development environment and framework designed for full stack development in Solidity. In simple words you can write your smart contract, deploy them, run tests, and debug your code.
