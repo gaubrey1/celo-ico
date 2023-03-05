@@ -33,6 +33,7 @@ In this tutorial, we will cover the following steps:
 - Building a smart contract for the ICO and NFT
 - Developing a React interface for the ICO and NFT
 - Deploying the smart contract and launching the NFT and ICO
+
 By the end of this tutorial, you will have a working ICO and NFT on the Celo blockchain, with a web interface that allows users to purchase your token and participate in your project.
 
 So, let's get started!
@@ -62,7 +63,7 @@ We will use the following tools and languages in this tutorial
 1. [Smart contract development](#smart-contract-development)
 2. [Deploy smart contract](#deploy-smart-contract)
 3. [Building the frontend](#building-the-frontend-with-vue)
-4. [Pushing to Github](#pushing-code-to-github)
+4. [Pushing code to Github](#pushing-code-to-github)
 5. [Delpoying to vercel](#deploying-to-vercel)
 
 ## Step 1: Smart Contract Development
@@ -92,7 +93,7 @@ npx hardhat
 
 Make sure you select `Create a Javascript Project` and then follow the steps in the terminal to complete your Hardhat setup.
 
-In the same terminal now install `@openzeppelin/contracts` as we would be importing [Openzeppelin's ERC721Enumerable Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721Enumerable.sol) in our contracts.
+In the same terminal now install `@openzeppelin/contracts` as we would be importing Openzeppelin's [ERC721Enumerable Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721Enumerable.sol), [ERC721URIStorage Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721URIStorage.sol) and [Ownable Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) in our contracts.
 
 ```bash
 npm install @openzeppelin/contracts
@@ -448,7 +449,7 @@ To develop the website we would be using [React](https://reactjs.org/). React is
      - my-app
 ```
 
-- To create this my-app, open a terminal pointing to the Celo-ICO folder and type the following code
+- To create this my-app, open a terminal pointing to the `Celo-ICO` folder and type the following code
 
 ```bash
 npx create-react-app my-app
@@ -460,6 +461,9 @@ npx create-react-app my-app
 cd my-app
 npm start
 ```
+
+- Your project shoudl look something this
+![]()
 
 Now let's install [Web3Modal library](https://github.com/Web3Modal/web3modal). Web3Modal is an easy-to-use library to help developers add support for multiple providers in their apps with a simple customizable configuration. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc), You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet and Arkane.
 
@@ -475,7 +479,7 @@ npm install ethers@5
 ```
 In your `src` folder, download this [images]() and save it.
 
-Now go to `App.css` file in the `src` folder and replace all the contents of this file with the following code, this would add some styling to your dapp.
+- Now go to `App.css` file in the `src` folder and replace all the contents of this file with the following code, this would add some styling to your dapp.
 ```css
 .main {
   min-height: 90vh;
@@ -538,7 +542,7 @@ Now go to `App.css` file in the `src` folder and replace all the contents of thi
 }
 ```
 
-Open your `App.js` file under the `src` folder and paste the following code, explanation of the code can be found in the comments
+- Open your `App.js` file under the `src` folder and paste the following code, explanation of the code can be found in the comments
 ```js
 import { Contract, providers, utils, BigNumber } from "ethers";
 import React, { useEffect, useRef, useState } from "react";
@@ -899,20 +903,41 @@ export default function Home() {
 }
 ```
 
-Now create a new folder under the my-app folder and name it `constants`. In the `constants` folder create a file called `index.js` and paste the following code:
-
+- Now create a new folder under the my-app folder and name it `constants`. In the `constants` folder create a file called `index.js` and paste the following code:
 ```js
-export const mintifyNftAbi = "abi-of-your-nft-contract";
+export const mintifyNftAbi = abi-of-your-nft-contract;
 export const mintifyNftAddress = "address-of-your-nft-contract";
-export const mintifyTokenAbi = "abi-of-your-token-contract";
+export const mintifyTokenAbi = abi-of-your-token-contract;
 export const mintifyTokenAddress = "address-of-your-token-contract";
 ```
 
 Replace "abi-of-your-nft-contract" and "address-of-your-nft-contract" with the abi and address of the NFT contract that you deployed respectively. This can be found in the `mintifyNft` folder located in the `hardhat` folder.
 
-Replace "abi-of-your-token-contract" by the abi of the token contract. To get the abi of the Token contract, go to hardhat-tutorial/artifacts/contracts/CryptoDevToken.sol and then fromCryptoDevToken.json file get the array marked under the "abi" key.
-Replace "address-of-your-token-contract" with the address of the token contract that you saved to your notepad earlier in the tutorial.
-Now in your terminal which is pointing to my-app folder, execute the following:
 
-npm run dev
-Your ICO dapp should now work without errors 🚀
+Replace "abi-of-your-token-contract" and "address-of-your-token-contract" with the abi and address of the token contract that you deployed respectively. This can be found in the `mintifyToken` folder located in the `hardhat` folder.
+
+- Your project should look somehting like this
+![]()
+
+Your ICO and NFT dapp should now work without errors 🚀.
+
+## Step 4: Pushing Code to Github
+After testing your dapp and checking that everything behaves correctly, upload your project to a new GitHub repository. Instructions on how to do this can be found [here](https://www.git-tower.com/learn/git/faq/push-to-github/).
+
+If needed, you can create a readme file for your project that explains your dapp and includes a link to your Dapp.
+
+## Step 5: Delpoying to Vercel
+We will now deploy your dapp so that everyone can see your website and you can share it with everyone.
+
+To deploy our dapp we will be using vercel. Vercel is the platform for frontend developers, providing the speed and reliability innovators need to create at the moment of inspiration. To get started;
+1.  Go to [Vercel](https://vercel.com), click on the sign up button, fill select the appropriate options displayed and continue the sign up with your GitHub.
+![]()
+2.  Click on Add New button, select Project from the dropdown menu, and then select your repo from the options given.
+3.  When configuring your new project, Vercel will allow you to customize your Root Directory. However, for this project, we will leave it at the Root Directory
+4.  Select the Framework as
+5.  Click Deploy
+
+Now you can see your deployed website by going to your dashboard, selecting your project, and copying the URL beneath domains!
+
+## Conclusion
+That’s it! Congratulations! You are done with the tutorial, in this tutorial have built a dapp using react, hardhat, solidity and the Celo blockchain, pushed your code to Github, and deployed it to Vercel! 🎉
