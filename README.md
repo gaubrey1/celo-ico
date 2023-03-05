@@ -60,14 +60,14 @@ We will use the following tools and languages in this tutorial
 - React
 
 ## Table of Content
-1. [Smart contract development](#step-1:-smart-contract-development)
+1. [Smart contract development](#smart-contract-development)
 2. [Deploy smart contract](#deploy-smart-contract)
 3. [Building the frontend](#building-the-frontend-with-vue)
 4. [Pushing code to Github](#pushing-code-to-github)
 5. [Delpoying to vercel](#deploying-to-vercel)
 6. [Conclusion](#conclusion)
 
-## Step 1: Smart Contract Development
+## Smart Contract Development
 In this section of this tutorial, we will be developing the smart contract for the ICO and the NFT. To build the smart contract we would be using [Hardhat](https://hardhat.org/). Hardhat is an Ethereum development environment and framework designed for full stack development in Solidity. In simple words you can write your smart contract, deploy them, run tests, and debug your code.
 
 To setup a Hardhat project, Open up a terminal and execute these commands
@@ -100,7 +100,7 @@ In the same terminal now install `@openzeppelin/contracts` as we would be import
 npm install @openzeppelin/contracts
 ```
 
-Create a two file inside the `contracts` directory. The first file should be named `MintifyNft.sol` and the second file named `MintifyToken.sol`.
+In the `contracts` folder, delete the `Lock.sol` file and create a two new files in the folder. The first file should be named `MintifyNft.sol` and the second file named `MintifyToken.sol`.
 
 - Open the `MintifyNft.sol` and paste the following code
 
@@ -211,7 +211,6 @@ contract MintifyNft is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
       // By default, ERC20 tokens have the smallest denomination of 10^(-18). This means, having a balance of (1)
       // is actually equal to (10 ^ -18) tokens.
       // Owning 1 full token is equivalent to owning (10^18) tokens when you account for the decimal places.
-      // More information on this can be found in the Freshman Track Cryptocurrency tutorial.
       uint256 public constant tokensPerNFT = 5 * 10**18;
 
       // the max total supply is 5000 for MintifyToken Tokens
@@ -265,8 +264,9 @@ contract MintifyNft is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 ```
 
 ## Step 2: Deploy Smart Contract
-To deploy our smart contract, we will need to install some packages. Let's install dotenv package to be able to import the env file and use it in our config. Open up a terminal pointing at hardhat-tutorial directory and execute this command
+To deploy our smart contract, we will need to install some packages. Let's install dotenv package to be able to import the env file and use it in our config.
 
+- Open up a terminal pointing at hardhat-tutorial directory and execute this command
 ```bash
 npm install dotenv
 ```
@@ -279,7 +279,7 @@ MNEMONIC="YOUR_SECRET_RECOVERY_PHRASE"
 ```
 In this case, we are using a mnemonic from an account created on Metamask. You can copy it from your Metamask. In Metamask, you can click on the identicon, go to settings, select "Security & Privacy", click on “Reveal Secret Recovery Phrase”, and copy that phrase.
 
-Let's deploy the contract to the celo alfajores network. Create a two new files in the `scripts` folder, the first should be named `deployNft.js` and the second named `deployToken.js`.
+Let's deploy the contract to the celo alfajores network. In the `scripts` folder, delete the `deploy.js` file and create a two new files, the first should be named `deployNft.js` and the second named `deployToken.js`.
 
 - In the `deployNft.js` file, paste the following code
 
@@ -423,7 +423,7 @@ require("dotenv").config({ path: ".env" });
 };
 ```
 
-- Compile the contract, open up a terminal pointing at hardhat-tutorial directory and execute this command
+- Compile the contract, open up a terminal pointing at `hardhat` directory and execute this command
 
 ```bash
 npx hardhat compile
@@ -451,6 +451,7 @@ To develop the website we would be using [React](https://reactjs.org/). React is
 ```
 
 - To create this my-app, open a terminal pointing to the `Celo-ICO` folder and type the following code
+> Note: This process may take a while to complete
 
 ```bash
 npx create-react-app my-app
@@ -478,7 +479,7 @@ npm install web3modal
 ```bash
 npm install ethers@5
 ```
-In your `src` folder, download this [images]() and save it.
+Download this [images]() and save it in the `src` folder in the `my-app` directory.
 
 - Now go to `App.css` file in the `src` folder and replace all the contents of this file with the following code, this would add some styling to your dapp.
 ```css
@@ -507,7 +508,12 @@ In your `src` folder, download this [images]() and save it.
 
 .image {
   width: 400px;
-  height: 50%;
+  height: 400px;
+}
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 .title {
@@ -518,7 +524,7 @@ In your `src` folder, download this [images]() and save it.
 .description {
   line-height: 1.5;
   margin: 2rem 0;
-  font-size: 1.3rem;
+  font-size: 1rem;
 }
 
 .button {
@@ -552,7 +558,7 @@ import { mintifyNftAbi, mintifyNftAddress, mintifyTokenAddress, mintifyTokenAbi 
 import './App.css';
 import image from "./15.svg";
 
-export default function Home() {
+function App () {
   // Create a BigNumber `0`
   const zero = BigNumber.from(0);
   // walletConnected keep track of whether the user's wallet is connected or not
@@ -563,7 +569,7 @@ export default function Home() {
   const [tokenIdsMinted, setTokenIdsMinted] = useState("0");
   // tokensMinted is the total number of tokens that have been minted till now out of 10000(max total supply)
   const [tokensMinted, setTokensMinted] = useState(zero);
-  // balanceOfMintifyTokens keeps track of number of Crypto Dev tokens owned by an address
+  // balanceOfMintifyTokens keeps track of number of Mintify tokens owned by an address
   const [balanceOfMintifyTokens, setBalanceOfMintifyTokens] = useState(zero);
   // isOwner gets the owner of the contract through the signed address
   const [isOwner, setIsOwner] = useState(false);
@@ -591,56 +597,59 @@ export default function Home() {
    */
   const mintNft = async () => {
     try {
-      // We need a Signer here since this is a 'write' transaction.
       await getTokenIdsMinted();
-      console.log(tokenIdsMinted);
       const tokenURI = "https://gateway.pinata.cloud/ipfs/QmaUihudH1Dv8imkPgMMcYgEAJ8qbq4NT418VyzsHJXutL/0"
       
+      // We need a Signer here since this is a 'write' transaction.
       const signer = await getProviderOrSigner(true);
       // Create a new instance of the Contract with a Signer, which allows
       // update methods
       const nftContract = new Contract(mintifyNftAddress, mintifyNftAbi, signer);
-      //, mintifyTokenAddress, mintifyTokenAbi call the mint from the contract to mint the Crypto Dev
+      // call the mint from the contract to mint the Mintify NFT
       const tx = await nftContract.safeMint(
         tokenIdsMinted,
         tokenURI,
-        { value: utils.parseEther("1") }
+        { value: utils.parseEther("2") }
       );
       setLoading(true);
       // wait for the transaction to get mined
       await tx.wait();
       await getTokenIdsMinted();
       setLoading(false);
-      window.alert("You successfully minted a Crypto Dev!");
+      window.alert("You successfully minted a Mintify NFT!");
     } catch (err) {
       console.error(err);
     }
   };
 
     /**
-   * claimTokens: Helps the user claim Crypto Dev Tokens
+   * claimTokens: Helps the user claim Mintify Tokens
    */
     const claimTokens = async () => {
-      try {
-        // We need a Signer here since this is a 'write' transaction.
-        // Create an instance of tokenContract
-        const signer = await getProviderOrSigner(true);
-        // Create an instance of tokenContract
-        const tokenContract = new Contract(
-          mintifyTokenAddress,
-          mintifyTokenAbi,
-          signer
-        );
-        const tx = await tokenContract.claimToken();
-        setLoading(true);
-        // wait for the transaction to get mined
-        await tx.wait();
-        setLoading(false);
-        window.alert("Sucessfully claimed Crypto Dev Tokens");
-        await getBalanceOfMintifyTokens();
-        await getTotalTokensMinted();
-      } catch (err) {
-        console.error(err);
+      if(tokenIdsMinted <= 0) {
+        alert("Please mint an NFT to claim your token")
+      } else {
+        try {
+          // We need a Signer here since this is a 'write' transaction.
+          // Create an instance of tokenContract
+          const signer = await getProviderOrSigner(true);
+          // Create an instance of tokenContract
+          const tokenContract = new Contract(
+            mintifyTokenAddress,
+            mintifyTokenAbi,
+            signer
+          );
+          const tx = await tokenContract.claimToken();
+          setLoading(true);
+          // wait for the transaction to get mined
+          await tx.wait();
+          setLoading(false);
+          alert("Sucessfully claimed Mintify Tokens");
+          await getBalanceOfMintifyTokens();
+          await getTotalTokensMinted();
+        } catch (err) {
+          console.error(err);
+        }
       }
     };
 
@@ -686,8 +695,6 @@ export default function Home() {
         const signer = await getProviderOrSigner(true);
         // Get the address associated to signer which is connected to Metamask
         const address = await signer.getAddress();
-        console.log(address);
-        console.log(_owner);
         if (address.toLowerCase() === _owner.toLowerCase()) {
           setIsOwner(true);
         }
@@ -696,7 +703,7 @@ export default function Home() {
       }
     };
   /**
-    * getBalanceOfCryptoDevTokens: checks the balance of Crypto Dev Tokens's held by an address
+    * getBalanceOfMintifyTokens: checks the balance of Mintify Tokens's held by an address
   */
     const getBalanceOfMintifyTokens = async () => {
       try {
@@ -838,7 +845,7 @@ export default function Home() {
           </button>
         );
       } else if (walletConnected && !isOwner) {
-        if(tokenIdsMinted < 0) {
+        if(tokenIdsMinted <= 0) {
           return (
             <button onClick={mintNft} className="button">
               Mint Nft
@@ -887,7 +894,7 @@ export default function Home() {
             <p>{tokenIdsMinted}/20 have been minted</p>
             <p>You have been awarded {utils.formatEther(balanceOfMintifyTokens)} Mintify Tokens</p>
             {/* Format Ether helps us in converting a BigNumber to string */}
-            <p>Overall {utils.formatEther(tokensMinted)}/10000 Mintify Tokens have been minted!!!</p>
+            <p>Overall {utils.formatEther(tokensMinted)}/5000 Mintify Tokens have been minted!!!</p>
           </div>
           {renderButton()}
         </div>
@@ -902,9 +909,12 @@ export default function Home() {
     </div>
   );
 }
+
+export default App;
+
 ```
 
-- Now create a new folder under the my-app folder and name it `constants`. In the `constants` folder create a file called `index.js` and paste the following code:
+- Now create a new folder under the `src` folder and name it `constants`. In the `constants` folder create a file called `index.js` and paste the following code:
 ```js
 export const mintifyNftAbi = abi-of-your-nft-contract;
 export const mintifyNftAddress = "address-of-your-nft-contract";
@@ -912,10 +922,10 @@ export const mintifyTokenAbi = abi-of-your-token-contract;
 export const mintifyTokenAddress = "address-of-your-token-contract";
 ```
 
-Replace "abi-of-your-nft-contract" and "address-of-your-nft-contract" with the abi and address of the NFT contract that you deployed respectively. This can be found in the `mintifyNft` folder located in the `hardhat` folder.
+Replace "abi-of-your-nft-contract" and "address-of-your-nft-contract" with the abi and address of the NFT contract that you deployed respectively. This can be found in the `mintifyNft-address.json` file(for the address) and `mintifyNft.json` file (for the abi) in the `mintifyNft` folder of the `hardhat` directory.
 
 
-Replace "abi-of-your-token-contract" and "address-of-your-token-contract" with the abi and address of the token contract that you deployed respectively. This can be found in the `mintifyToken` folder located in the `hardhat` folder.
+Replace "abi-of-your-token-contract" and "address-of-your-token-contract" with the abi and address of the token contract that you deployed respectively. This can be found in the the `mintifyToken-address.json` file(for the address) and `mintifyToken.json` file (for the abi) in the `mintifyToken` folder of the `hardhat` directory.
 
 - Your project should look somehting like this
 ![]()
@@ -933,10 +943,11 @@ We will now deploy your dapp so that everyone can see your website and you can s
 To deploy our dapp we will be using vercel. Vercel is the platform for frontend developers, providing the speed and reliability innovators need to create at the moment of inspiration. To get started;
 1.  Go to [Vercel](https://vercel.com), click on the sign up button, fill select the appropriate options displayed and continue the sign up with your GitHub.
 ![]()
-2.  Click on Add New button, select Project from the dropdown menu, and then select your repo from the options given.
-3.  When configuring your new project, Vercel will allow you to customize your Root Directory. However, for this project, we will leave it at the Root Directory
-4.  Select the Framework as
-5.  Click Deploy
+2.  Click on Add New button, select Project from the dropdown menu,
+3.  If this is your first time using vercel, you'll need to install vercel in your Github account. To do this, click the Add Github Account dropdown and follow the prompt shown. This will automatically show all your repository in your Github account. Select your Celo-ICO repo from the options given and import it
+4.  When configuring your new project, Vercel will allow you to customize your Root Directory. For this project, our root directory is `my-app`. Click on the edit button to change the root directory to `my-app`.
+5.  Select the framework as `Create React App`
+6.  Click Deploy. This will take a while to complete
 
 Now you can see your deployed website by going to your dashboard, selecting your project, and copying the URL beneath domains!
 
