@@ -1,5 +1,5 @@
 # BUILDING AN INITIAL COIN OFFERING(ICO) ON THE CELO BLOCKCHAIN USING REACT.JS
-- Estimated time: 
+- Reading time: 27 minutes
 - Link: [Celo Initial Coin Offering Tutorial](https://celo-ico.vercel.app/)
 
 ## Introduction
