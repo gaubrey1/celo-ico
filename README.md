@@ -1,7 +1,7 @@
 # Building an Initial Coin Offering(ICO) on the Celo Blockchain using React
 
 - **Reading time: 27 minutes**
-- Link: [Celo Initial Coin Offering Tutorial](https://celo-ico.vercel.app/)
+- Link: [Celo Initial Coin Offering live demo](https://celo-ico.vercel.app/)
 
 ## Introduction
 Welcome to this step-by-step tutorial on creating an Initial Coin Offering (ICO) for a minted NFT on the Celo blockchain using React. In this tutorial, we will guide you through the process of creating two tokens; an ERC-721 token and an ERC-20 token on the Celo blockchain, building a smart contract to manage the ICO and NFT and creating a web interface using React to interact with the smart contract and launch your ICO as well as the NFT.
@@ -41,10 +41,9 @@ To follow along with this tutorial, you should have a basic understanding of:
 1. React and web development.
 2. Solidity.
 3. The Celo blockchain.
+4. The GitHub interface.
 
 ## Prerequisites
-- This tutorial assumes that you have some basic knowledge of Solidity and React.
-- You can write code in [React.js](https://reactjs.org/)
 - Have the Metamask extension wallet installed and set up. If not, install [MetamaskExtensionWallet](https://metamask.io/)
 - [Node.js](https://nodejs.org/) installed on your machine.
 - An IDE such as [Vscode](https://code.visualstudio.com/) or [Sublime Text](https://www.sublimetext.com/).
@@ -58,6 +57,10 @@ We will use the following tools and languages in this tutorial
 - A web browser
 - Solidity
 - React
+- [Ethers.js](https://docs.ethers.org/v5/)
+- [Dotenv](https://www.dotenv.org/)
+- [Web3modal](https://web3modal.com/)
+- [Vercel](https://vercel.com/)
 
 ## Table of Content
 - [Building an Initial Coin Offering(ICO) on the Celo Blockchain using React](#building-an-initial-coin-offeringico-on-the-celo-blockchain-using-react)
