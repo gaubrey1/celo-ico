@@ -3,7 +3,24 @@
 - **Reading time: 27 minutes**
 - Link: [Celo Initial Coin Offering live demo](https://celo-ico.vercel.app/)
 
+
+## Table of Content
+- [Building an Initial Coin Offering(ICO) on the Celo Blockchain using React](#building-an-initial-coin-offeringico-on-the-celo-blockchain-using-react)
+  - [Table of Content](#table-of-content)
+  - [Introduction](#introduction)
+  - [Learning Objective](#learning-objective)
+  - [Prerequisites](#prerequisites)
+  - [Requirement](#requirement)
+  - [Tech Stack](#tech-stack)
+  - [Smart Contract Development](#smart-contract-development)
+  - [Deploy Smart Contract](#deploy-smart-contract)
+  - [Building the Frontend](#building-the-frontend)
+  - [Pushing Code to Github](#pushing-code-to-github)
+  - [Deploying to Vercel](#deploying-to-vercel)
+  - [Conclusion](#conclusion)
+
 ## Introduction
+
 Welcome to this step-by-step tutorial on creating an Initial Coin Offering (ICO) for a minted NFT on the Celo blockchain using React. In this tutorial, we will guide you through the process of creating two tokens; an ERC-721 token and an ERC-20 token on the Celo blockchain, building a smart contract to manage the ICO and NFT and creating a web interface using React to interact with the smart contract and launch your ICO as well as the NFT.
 
 Our project involves creating a unique NFT (non-fungible token) that represents a one-of-a-kind piece of digital artwork. The NFT will be minted on a blockchain, making it verifiable, transparent, and immutable. This means that the ownership and authenticity of the artwork can be easily verified, and the value of the NFT can increase over time based on demand.
@@ -16,7 +33,7 @@ An initial coin offering (ICO) is a fundraising method used by blockchain-based 
 
 ICO participants can purchase these tokens using cryptocurrencies such as Bitcoin or Ethereum. The tokens are usually sold at a discount during the ICO period to incentivize early investors, and their value may appreciate over time as the project develops and gains adoption.
 
-Celo is an open-source blockchain platform that enables fast, secure, and low-cost mobile payments and access to decentralized finance (DeFi) applications. It uses a proof-of-stake consensus algorithm, which makes it more energy-efficient and less resource-intensive than other blockchain platforms. It was designed to enable a new universe of financial solutions accessible to mobile users, creating a global financial ecosystem where an end-user can onboard into the Celo ecosystem with just a mobile number. It offers the following key features
+Celo is an open-source blockchain platform that enables fast, secure, and low-cost mobile payments and access to decentralized finance (DeFi) applications. It uses a proof-of-stake consensus algorithm, which makes it more energy-efficient and less resource-intensive than other blockchain platforms. It was designed to enable a new universe of financial solutions accessible to mobile users, creating a global financial ecosystem where an end-user can onboard into the Celo ecosystem with just a mobile number. It offers the following key features:
   - Proof-of-stake
   - Carbon negative
   - Layer-1 protocol
@@ -25,7 +42,8 @@ Celo is an open-source blockchain platform that enables fast, secure, and low-co
   - Ultra-light clients
   - Localized stablecoins (cUSD, cEUR, cREAL)
   - Gas payable in multiple currencies
-  For more information, click [here](https://docs.celo.org/general) to learn more about Celo
+
+For more information, click [here](https://docs.celo.org/general) to learn more about Celo
 
 ## Learning Objective
 In this tutorial, we will cover the following steps:
@@ -36,19 +54,20 @@ In this tutorial, we will cover the following steps:
 - Developing a React interface for the ICO and NFT
 - Deploying the smart contract and launching the NFT and ICO
 
-## Requirement
+## Prerequisites
 To follow along with this tutorial, you should have a basic understanding of:
 1. React and web development.
 2. Solidity.
 3. The Celo blockchain.
 4. The GitHub interface.
 
-## Prerequisites
+## Requirement
 - Have the Metamask extension wallet installed and set up. If not, install [MetamaskExtensionWallet](https://metamask.io/)
 - [Node.js](https://nodejs.org/) installed on your machine.
 - An IDE such as [Vscode](https://code.visualstudio.com/) or [Sublime Text](https://www.sublimetext.com/).
 - [RemixIDE](https://remix.ethereum.org/)
 - Command line or similar software installed.
+
 
 ## Tech Stack
 We will use the following tools and languages in this tutorial
@@ -62,20 +81,7 @@ We will use the following tools and languages in this tutorial
 - [Web3modal](https://web3modal.com/)
 - [Vercel](https://vercel.com/)
 
-## Table of Content
-- [Building an Initial Coin Offering(ICO) on the Celo Blockchain using React](#building-an-initial-coin-offeringico-on-the-celo-blockchain-using-react)
-  - [Introduction](#introduction)
-  - [Learning Objective](#learning-objective)
-  - [Requirement](#requirement)
-  - [Prerequisites](#prerequisites)
-  - [Tech Stack](#tech-stack)
-  - [Table of Content](#table-of-content)
-  - [Smart Contract Development](#smart-contract-development)
-  - [Deploy Smart Contract](#deploy-smart-contract)
-  - [Building the Frontend](#building-the-frontend)
-  - [Pushing Code to Github](#pushing-code-to-github)
-  - [Deploying to Vercel](#deploying-to-vercel)
-  - [Conclusion](#conclusion)
+
 
 By the end of this tutorial, you will have a working ICO and NFT on the Celo blockchain, with a web interface that allows users to purchase your tokens and participate in your project.
 
