@@ -1,11 +1,11 @@
-# Building an Initial Coin Offering(ICO) on the Celo Blockchain using React
+# Building an Initial Coin Offering(ICO) On the Celo Blockchain
 
 - **Reading time: 27 minutes**
 - Link: [Celo Initial Coin Offering live demo](https://celo-ico.vercel.app/)
 
 
 ## Table of Content
-- [Building an Initial Coin Offering(ICO) on the Celo Blockchain using React](#building-an-initial-coin-offeringico-on-the-celo-blockchain-using-react)
+- [Building an Initial Coin Offering(ICO) On the Celo Blockchain](#building-an-initial-coin-offeringico-on-the-celo-blockchain)
   - [Table of Content](#table-of-content)
   - [Introduction](#introduction)
   - [Learning Objective](#learning-objective)
@@ -60,6 +60,7 @@ To follow along with this tutorial, you should have a basic understanding of:
 2. Solidity.
 3. The Celo blockchain.
 4. The GitHub interface.
+5. Using the [ERC20](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) and [ERC721](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/) Standards.
 
 ## Requirement
 - Have the Metamask extension wallet installed and set up. If not, install the [Metamask Extension Wallet](https://metamask.io/)
@@ -138,7 +139,7 @@ contract MintifyNft is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   uint256 public _price = 2 ether;
 
   // max number of NFT available for minting, it will be defined on initiating the contract
-  uint256 public maxTokenIds;
+  uint256 public constant maxTokenIds = 1000;
 
   // total number of tokenIds minted
   uint256 public tokenIds;
@@ -146,11 +147,8 @@ contract MintifyNft is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   /**
     * @dev ERC721 constructor takes in a `name` and a `symbol` to the token collection.
     * name in our case is `Mintify Token` and symbol is `MT`.
-    * Constructor for Mintify Token takes in the _maxTokenIds.
   */
-  constructor(uint256 _maxTokenIds) ERC721("Mintify Token", "MT") {
-    maxTokenIds = _maxTokenIds;
-  }
+  constructor() ERC721("Mintify Token", "MT") {}
 
   /**
     * @dev safeMint allows a user to mint one NFT per transaction.
@@ -168,10 +166,10 @@ contract MintifyNft is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     * @dev withdraw sends all the ether(celo) in the contract
     * to the owner of the contract
   */
-  function withdraw() public onlyOwner {
+  function withdraw() public payable onlyOwner {
     address _owner = owner();
     uint256 amount = address(this).balance;
-    (bool sent, ) = _owner.call{value: amount}("");
+    (bool sent, ) = payable(_owner).call{value: amount}("");
     require(sent, "Failed to send amount");
   }
 
@@ -234,6 +232,7 @@ Open the `MintifyToken.sol` file and paste the following code:
       uint256 public constant tokensPerNFT = 5 * 10**18;
 
       // the max total supply is 5000 for MintifyToken Tokens
+      // This means that the max total supply for Mintify Token NFTs should be 1000
       uint256 public constant maxTotalSupply = 5000 * 10**18;
 
       // MintifyNft contract instance
@@ -273,12 +272,15 @@ Open the `MintifyToken.sol` file and paste the following code:
                   tokenIdsClaimed[tokenId] = true;
               }
           }
-          // If all the token Ids have been claimed, revert the transaction;
+          // If all the token Ids have been claimed, revert the transaction.
           require(amount > 0, "You have already claimed all the tokens");
 
+          uint256 totalMtTokens = amount * tokensPerNFT;
+          // If the max supply is exceeded for ERC20 MT tokens, revert the transaction.
+          require(totalMtTokens + totalSupply() <= maxTotalSupply);
           // call the internal function from Openzeppelin's ERC20 contract
           // Mint (amount * 10) tokens for each NFT
-          _mint(msg.sender, amount * tokensPerNFT);
+          _mint(msg.sender, totalMtTokens);
       }
   }
 ```
@@ -307,7 +309,6 @@ In the `deployNft.js` file, paste the following code:
 const hre = require("hardhat");
 
 async function main() {
-  const maxIds = 20;
   /*
   A ContractFactory in ethers.js is an abstraction used to deploy new smart contracts,
   so mintifyNftContract here is a factory for instances of our MintifyNft contract.
@@ -315,9 +316,7 @@ async function main() {
   const mintifyNftContract = await hre.ethers.getContractFactory("MintifyNft");
 
   // deploy the contract
-  const deployedMintifyNftContract = await mintifyNftContract.deploy(
-    maxIds
-  );
+  const deployedMintifyNftContract = await mintifyNftContract.deploy();
 
   // Wait for it to finish deploying
   await deployedMintifyNftContract.deployed();
