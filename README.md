@@ -65,15 +65,15 @@ To follow along with this tutorial, you should have a basic understanding of:
 ## Requirement
 - Have the Metamask extension wallet installed and set up. If not, install the [Metamask Extension Wallet](https://metamask.io/)
 - [Node.js](https://nodejs.org/) installed on your machine.
-- An IDE such as [Vs Code](https://code.visualstudio.com/) or [Sublime Text](https://www.sublimetext.com/).
-- [RemixIDE](https://remix.ethereum.org/)
+- An IDE such as [VS Code](https://code.visualstudio.com/) or [Sublime Text](https://www.sublimetext.com/).
+- [Remix IDE](https://remix.ethereum.org/)
 - Command line or similar software installed.
 
 
 ## Tech Stack
 We will use the following tools and languages in this tutorial:
 - [Hardhat](https://hardhat.org/)
-- VSCode
+- VS Code
 - A web browser
 - [Solidity](https://soliditylang.org/)
 - [React](https://reactjs.org/)
