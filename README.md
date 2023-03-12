@@ -1,13 +1,31 @@
-# BUILDING AN INITIAL COIN OFFERING(ICO) ON THE CELO BLOCKCHAIN USING REACT.JS
-- Reading time: 27 minutes
-- Link: [Celo Initial Coin Offering Tutorial](https://celo-ico.vercel.app/)
+# Building an Initial Coin Offering(ICO) On the Celo Blockchain
+
+- **Reading time: 27 minutes**
+- Link: [Celo Initial Coin Offering live demo](https://celo-ico.vercel.app/)
+
+
+## Table of Content
+- [Building an Initial Coin Offering(ICO) On the Celo Blockchain](#building-an-initial-coin-offeringico-on-the-celo-blockchain)
+  - [Table of Content](#table-of-content)
+  - [Introduction](#introduction)
+  - [Learning Objective](#learning-objective)
+  - [Prerequisites](#prerequisites)
+  - [Requirement](#requirement)
+  - [Tech Stack](#tech-stack)
+  - [Smart Contract Development](#smart-contract-development)
+  - [Deploy Smart Contract](#deploy-smart-contract)
+  - [Building the Front-End](#building-the-front-end)
+  - [Pushing Code to Github](#pushing-code-to-github)
+  - [Deploying to Vercel](#deploying-to-vercel)
+  - [Conclusion](#conclusion)
 
 ## Introduction
-Welcome to this step-by-step tutorial on creating an Initial Coin Offering (ICO) for a minted NFT on the Celo blockchain using React. In this tutorial, we will guide you through the process of creating two tokens; an ERC-721 token and an ERC-20 token on the Celo blockchain, building a smart contract to manage the ICO and NFT, and creating a web interface using React to interact with the smart contract and launch your ICO as well as the NFT.
+
+Welcome to this step-by-step tutorial on creating an Initial Coin Offering (ICO) for a minted NFT on the Celo blockchain using React. In this tutorial, we will guide you through the process of creating two tokens; an ERC-721 token and an ERC-20 token on the Celo blockchain, building a smart contract to manage the ICO and NFT and creating a web interface using React to interact with the smart contract and launch your ICO as well as the NFT.
 
 Our project involves creating a unique NFT (non-fungible token) that represents a one-of-a-kind piece of digital artwork. The NFT will be minted on a blockchain, making it verifiable, transparent, and immutable. This means that the ownership and authenticity of the artwork can be easily verified, and the value of the NFT can increase over time based on demand.
 
-By minting the NFT, you will be rewarded with and ICO before it becomes publicly available. This means you will have exclusive ownership of a unique piece of digital art and the potential for a significant return on your investment.
+By minting the NFT, you will be rewarded with an **ICO** before it becomes publicly available. This means you will have exclusive ownership of a unique piece of digital art and the potential for a significant return on your investment.
 
 Before we get started, it's important to have a basic understanding of what an initial coin offering is, smart contracts, and the Celo blockchain.
 
@@ -15,16 +33,17 @@ An initial coin offering (ICO) is a fundraising method used by blockchain-based 
 
 ICO participants can purchase these tokens using cryptocurrencies such as Bitcoin or Ethereum. The tokens are usually sold at a discount during the ICO period to incentivize early investors, and their value may appreciate over time as the project develops and gains adoption.
 
-Celo is an open-source blockchain platform that enables fast, secure, and low-cost mobile payments and access to decentralized finance (DeFi) applications. It uses a proof-of-stake consensus algorithm, which makes it more energy-efficient and less resource-intensive than other blockchain platforms. It was designed to enable a new universe of financial solutions accessible to mobile users, creating a global financial ecosystem where an end-user can onboard into the Celo ecosystem with just a mobile number. It offers the following key features
-  - Proof-of-stake
-  - Carbon negative
+Celo is an open-source blockchain platform that enables fast, secure, and low-cost mobile payments and access to decentralized finance (DeFi) applications. It uses a proof-of-stake consensus algorithm, which makes it more energy-efficient and less resource-intensive than other blockchain platforms. It was designed to enable a new universe of financial solutions accessible to mobile users, creating a global financial ecosystem where an end-user can onboard into the Celo ecosystem with just a mobile number. It offers the following key features:
+  - [Proof-of-stake](https://ethereum.org/en/developers/docs/consensus-mechanisms/pos/)
+  - [Carbon negative](https://blog.celo.org/a-carbon-negative-blockchain-its-here-and-it-s-celo-60228de36490)
   - Layer-1 protocol
   - EVM compatible
   - Mobile-first identity
   - Ultra-light clients
   - Localized stablecoins (cUSD, cEUR, cREAL)
   - Gas payable in multiple currencies
-  For more information, click [here](https://docs.celo.org/general) to learn more about celo
+
+For more information, click [here](https://docs.celo.org/general) to learn more about Celo.
 
 ## Learning Objective
 In this tutorial, we will cover the following steps:
@@ -35,42 +54,44 @@ In this tutorial, we will cover the following steps:
 - Developing a React interface for the ICO and NFT
 - Deploying the smart contract and launching the NFT and ICO
 
-## Requirement
-To follow along with this tutorial, you should have a basic understanding of React and web development, as well as some familiarity with Solidity, the programming language used to write smart contracts on the Ethereum and Celo blockchains.
-
 ## Prerequisites
-- This tutorial assumes that you have some basic knowledge of Solidity and React.
-- You can write code in [React.js](https://reactjs.org/)
-- Have metamask extension wallet installed and set up. If not, install [MetamaskExtensionWallet](https://metamask.io/)
-- [Nodejs](https://nodejs.org/) installed on your machine.
-- An IDE such as [Vscode](https://code.visualstudio.com/) or Sublime text.
-- [RemixIDE](https://remix.ethereum.org/)
+To follow along with this tutorial, you should have a basic understanding of:
+1. React and web development.
+2. Solidity.
+3. The Celo blockchain.
+4. The GitHub interface.
+5. Using the [ERC20](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/) and [ERC721](https://ethereum.org/en/developers/docs/standards/tokens/erc-721/) Standards.
+
+## Requirement
+- Have the Metamask extension wallet installed and set up. If not, install the [Metamask Extension Wallet](https://metamask.io/)
+- [Node.js](https://nodejs.org/) installed on your machine.
+- An IDE such as [VS Code](https://code.visualstudio.com/) or [Sublime Text](https://www.sublimetext.com/).
+- [Remix IDE](https://remix.ethereum.org/)
 - Command line or similar software installed.
 
+
 ## Tech Stack
-We will use the following tools and languages in this tutorial
+We will use the following tools and languages in this tutorial:
 - [Hardhat](https://hardhat.org/)
-- VSCode
+- VS Code
 - A web browser
-- Solidity
-- React
+- [Solidity](https://soliditylang.org/)
+- [React](https://reactjs.org/)
+- [Ethers.js](https://docs.ethers.org/v5/)
+- [Dotenv](https://www.dotenv.org/)
+- [Web3modal](https://web3modal.com/)
+- [Vercel](https://vercel.com/)
 
-## Table of Content
-1. [Smart contract development](#smart-contract-development)
-2. [Deploy smart contract](#deploy-smart-contract)
-3. [Building the frontend](#building-the-frontend)
-4. [Pushing code to Github](#pushing-code-to-github)
-5. [Deploying to vercel](#deploying-to-vercel)
-6. [Conclusion](#conclusion)
 
-By the end of this tutorial, you will have a working ICO and NFT on the Celo blockchain, with a web interface that allows users to purchase your token and participate in your project.
+
+By the end of this tutorial, you will have a working ICO and NFT on the Celo blockchain, with a web interface that allows users to purchase your tokens and participate in your project.
 
 So, let's get started!
 
 ## Smart Contract Development
-In this section of this tutorial, we will be developing the smart contract for the ICO and the NFT. To build the smart contract we would be using [Hardhat](https://hardhat.org/). Hardhat is an Ethereum development environment and framework designed for full stack development in Solidity. In simple words you can write your smart contract, deploy them, run tests, and debug your code.
+In this section of this tutorial, we will be developing the smart contract for the ICO and the NFT. To build the smart contract we would be using [Hardhat](https://hardhat.org/). Hardhat is an Ethereum development environment and framework designed for full-stack development in Solidity. In simple words, you can write your smart contract, deploy them, run tests, and debug your code.
 
-To setup a Hardhat project, Open up a terminal and execute these commands
+To set up a Hardhat project, Open up a terminal and execute these commands:
 
 ```bash
 mkdir Celo-ICO
@@ -80,29 +101,29 @@ cd hardhat
 npm init --yes
 npm install --save-dev hardhat
 ```
-- If you are a Windows user, you'll have to add one more dependency. so in the terminal, add the following command :
+If you are a Windows user, you'll have to add one more dependency. so in the terminal, add the following command :
 
 ```bash 
 npm install --save-dev @nomicfoundation/hardhat-toolbox
 ```
 
-- In the same directory where you installed Hardhat run:
+In the same directory where you installed Hardhat run:
 
 ```bash
 npx hardhat
 ```
 
-Make sure you select `Create a Javascript Project` and then follow the steps in the terminal to complete your Hardhat setup.
+Make sure you select **Create a Javascript Project** and then follow the steps in the terminal to complete your Hardhat setup.
 
-In the same terminal now install `@openzeppelin/contracts` as we would be importing Openzeppelin's [ERC721Enumerable Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721Enumerable.sol), [ERC721URIStorage Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721URIStorage.sol) and [Ownable Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) in our contracts.
+In the same terminal now install `@openzeppelin/contracts` as we would be importing Openzeppelin's [ERC721Enumerable Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721Enumerable.sol), [ERC721URIStorage Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC721/extensions/ERC721URIStorage.sol) and [Ownable Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) in our contracts:
 
 ```bash
 npm install @openzeppelin/contracts
 ```
 
-In the `contracts` folder, delete the `Lock.sol` file and create a two new files in the folder. The first file should be named `MintifyNft.sol` and the second file named `MintifyToken.sol`.
+In the `contracts` folder, delete the `Lock.sol` file and create two new files in the folder. The first file should be named `MintifyNft.sol` and the second file should be named `MintifyToken.sol`.
 
-- Open the `MintifyNft.sol` and paste the following code
+Open the `MintifyNft.sol` and paste the following code:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -118,7 +139,7 @@ contract MintifyNft is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   uint256 public _price = 2 ether;
 
   // max number of NFT available for minting, it will be defined on initiating the contract
-  uint256 public maxTokenIds;
+  uint256 public constant maxTokenIds = 1000;
 
   // total number of tokenIds minted
   uint256 public tokenIds;
@@ -126,11 +147,8 @@ contract MintifyNft is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
   /**
     * @dev ERC721 constructor takes in a `name` and a `symbol` to the token collection.
     * name in our case is `Mintify Token` and symbol is `MT`.
-    * Constructor for Mintify Token takes in the _maxTokenIds.
   */
-  constructor(uint256 _maxTokenIds) ERC721("Mintify Token", "MT") {
-    maxTokenIds = _maxTokenIds;
-  }
+  constructor() ERC721("Mintify Token", "MT") {}
 
   /**
     * @dev safeMint allows a user to mint one NFT per transaction.
@@ -148,10 +166,10 @@ contract MintifyNft is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     * @dev withdraw sends all the ether(celo) in the contract
     * to the owner of the contract
   */
-  function withdraw() public onlyOwner {
+  function withdraw() public payable onlyOwner {
     address _owner = owner();
     uint256 amount = address(this).balance;
-    (bool sent, ) = _owner.call{value: amount}("");
+    (bool sent, ) = payable(_owner).call{value: amount}("");
     require(sent, "Failed to send amount");
   }
 
@@ -195,7 +213,7 @@ contract MintifyNft is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 }
 ```
 
-- Open the `MintifyToken.sol` file and paste the following code
+Open the `MintifyToken.sol` file and paste the following code:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -214,6 +232,7 @@ contract MintifyNft is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
       uint256 public constant tokensPerNFT = 5 * 10**18;
 
       // the max total supply is 5000 for MintifyToken Tokens
+      // This means that the max total supply for Mintify Token NFTs should be 1000
       uint256 public constant maxTotalSupply = 5000 * 10**18;
 
       // MintifyNft contract instance
@@ -253,41 +272,43 @@ contract MintifyNft is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
                   tokenIdsClaimed[tokenId] = true;
               }
           }
-          // If all the token Ids have been claimed, revert the transaction;
+          // If all the token Ids have been claimed, revert the transaction.
           require(amount > 0, "You have already claimed all the tokens");
 
+          uint256 totalMtTokens = amount * tokensPerNFT;
+          // If the max supply is exceeded for ERC20 MT tokens, revert the transaction.
+          require(totalMtTokens + totalSupply() <= maxTotalSupply);
           // call the internal function from Openzeppelin's ERC20 contract
           // Mint (amount * 10) tokens for each NFT
-          _mint(msg.sender, amount * tokensPerNFT);
+          _mint(msg.sender, totalMtTokens);
       }
   }
 ```
 
 ## Deploy Smart Contract
-To deploy our smart contract, we will need to install some packages. Let's install dotenv package to be able to import the env file and use it in our config.
+To deploy our smart contract, we will need to install some packages. Let's install the `dotenv` package to be able to import the env file and use it in our config file.
 
-- Open up a terminal pointing at hardhat-tutorial directory and execute this command
+Open up a terminal pointing at the **hardhat-tutorial** directory and execute this command:
 ```bash
 npm install dotenv
 ```
 
-Now create a `.env` file in the `hardhat` folder and add the following lines.
+Now create a `.env` file in the `hardhat` folder and add the following line.
 
-Add your mnemonic into the file, like this:
-```
+Add your *mnemonic* into the file, like this:
+```bash
 MNEMONIC="YOUR_SECRET_RECOVERY_PHRASE"
 ```
 In this case, we are using a mnemonic from an account created on Metamask. You can copy it from your Metamask. In Metamask, you can click on the identicon, go to settings, select "Security & Privacy", click on “Reveal Secret Recovery Phrase”, and copy that phrase.
 
-Let's deploy the contract to the celo alfajores network. In the `scripts` folder, delete the `deploy.js` file and create a two new files, the first should be named `deployNft.js` and the second named `deployToken.js`.
+Let's deploy the contract to the celo alfajores network. In the `scripts` folder, delete the `deploy.js` file and create two new files, the first should be named `deployNft.js` and the second named `deployToken.js`.
 
-- In the `deployNft.js` file, paste the following code
+In the `deployNft.js` file, paste the following code:
 
 ```js
 const hre = require("hardhat");
 
 async function main() {
-  const maxIds = 20;
   /*
   A ContractFactory in ethers.js is an abstraction used to deploy new smart contracts,
   so mintifyNftContract here is a factory for instances of our MintifyNft contract.
@@ -295,9 +316,7 @@ async function main() {
   const mintifyNftContract = await hre.ethers.getContractFactory("MintifyNft");
 
   // deploy the contract
-  const deployedMintifyNftContract = await mintifyNftContract.deploy(
-    maxIds
-  );
+  const deployedMintifyNftContract = await mintifyNftContract.deploy();
 
   // Wait for it to finish deploying
   await deployedMintifyNftContract.deployed();
@@ -310,7 +329,7 @@ async function main() {
   storeContractData(deployedMintifyNftContract)
 }
 
-// Create a directory/folder to store the contract address and abi
+// Create a directory/folder to store the contract address and ABI
 function storeContractData(contract) {
   const fs = require("fs");
   const contractsDir = __dirname + "/../mintifyNft";
@@ -342,7 +361,7 @@ main()
   });
 ```
 
-- In the `deployToken.js` file, paste the following code
+In the `deployToken.js` file, paste the following code:
 
 ```js
 const hre = require("hardhat");
@@ -371,7 +390,7 @@ async function main() {
   storeContractData(deployedMintifyTokenContract);
 }
 
-// Create a directory/folder to store the contract address and abi
+// Create a directory/folder to store the contract address and ABI
 function storeContractData(contract) {
   const fs = require("fs");
   const contractsDir = __dirname + "/../mintifyToken";
@@ -402,7 +421,7 @@ main()
   });
 ```
 
-Now open the `hardhat.config.js` file, we'll set-up the celo network here so that we can deploy our contract to the Celo alfajores network. Replace all the lines in the `hardhat.config.js` file with the following code
+Now open the `hardhat.config.js` file, we'll set-up the Celo network here so that we can deploy our contract to the Celo Alfajores network. Replace all the lines in the `hardhat.config.js` file with the following code
 
 ```js
 require("@nomicfoundation/hardhat-toolbox");
@@ -423,7 +442,7 @@ require("dotenv").config({ path: ".env" });
 };
 ```
 
-- Compile the contract, open up a terminal pointing at `hardhat` directory and execute this command
+Open up a terminal pointing at the `hardhat` directory and execute this command to compile the smart contracts:
 
 ```bash
 npx hardhat compile
@@ -433,7 +452,7 @@ You should get a message in the terminal like this
 
 ![](https://github.com/gaubrey1/celo-ico/blob/main/tutorial-images/hardhat-compile-successful.png)
 
-- To deploy, open up a terminal pointing at `hardhat` directory and execute this commands
+To deploy, open up a terminal pointing at the `hardhat` directory and execute these commands:
 
 ```bash
 npx hardhat run scripts/deployNft.js --network alfajores
@@ -441,12 +460,12 @@ npx hardhat run scripts/deployNft.js --network alfajores
 ```bash
 npx hardhat run scripts/deployToken.js --network alfajores
 ```
-> You'll have to run the `deployNft.js` file before the `deployToken.js` file as the former makes use of the later's contract address.
+>**_Note_**: You'll have to run the `deployNft.js` file before the `deployToken.js` file as the former makes use of the later's contract address.
 
-This will create two new folders `mintifyNft` and `mintifyToken` with each folder containing the corresponding contract's address and abi. This will be needed to interact with each smart contract on the frontend.
+This will create two new folders `mintifyNft` and `mintifyToken` with each folder containing the corresponding contract's address and ABI. This will be needed to interact with each smart contract on the front end.
 
-## Building the Frontend
-To develop the frontend of our website we would be using [React](https://reactjs.org/). React is a declarative, component-based javascript framework which is used for building user interfaces. First, You would need to create a new react app. Your folder structure should look something like
+## Building the Front-End
+To develop the front end of our website we would be using [React](https://reactjs.org/). React is a declarative, component-based Javascript framework that is used for building user interfaces. First, You would need to create a new React app. Your folder structure should look something like this:
 
 ```
 - Celo-ICO
@@ -454,14 +473,14 @@ To develop the frontend of our website we would be using [React](https://reactjs
      - my-app
 ```
 
-- To create this my-app, open a terminal pointing to the `Celo-ICO` folder and type the following code
-> Note: This process may take a while to complete
+To create this `my-app` folder, open a terminal pointing to the `Celo-ICO` folder and type the following code:
 
 ```bash
 npx create-react-app my-app
 ```
+>**_Note_**: This process may take a while to complete
 
-- Now to run the app, execute these commands in the terminal
+Now to run the app, execute these commands in the terminal:
 
 ```bash
 cd my-app
@@ -472,21 +491,26 @@ Your project should look something this
 
 ![](https://github.com/gaubrey1/celo-ico/blob/main/tutorial-images/initial-project.png)
 
-Now let's install [Web3Modal library](https://github.com/Web3Modal/web3modal). Web3Modal is an easy-to-use library to help developers add support for multiple providers in their apps with a simple customizable configuration. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc), You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet and Arkane.
+Now let's install [Web3Modal library](https://github.com/Web3Modal/web3modal). Web3Modal is an easy-to-use library to help developers add support for multiple providers in their apps with a simple customizable configuration. By default the **Web3Modal** library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc), You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet, and Arkane.
 
-- Open up a terminal pointing at my-app directory and execute this command
+Open up a terminal pointing at the `my-app` directory and execute this command:
+
 ```bash
 npm install web3modal
 ```
 
-- In the same terminal also install ethers.js
-> Note : We install v5 specifically since the new v6 has breaking changes to the code.
+In the same terminal also install `ethers.js`:
+
 ```bash
 npm install ethers@5
 ```
+
+>**_Note_**: We install v5 specifically since the new v6 has breaking changes to the code.
+> 
 Download this [image](https://github.com/gaubrey1/celo-ico/blob/main/tutorial-images/15.svg) and save it in the `src` folder in the `my-app` directory.
 
-- Now go to `App.css` file in the `src` folder and replace all the contents of this file with the following code, this would add some styling to your dapp.
+Now go to `App.css` file in the `src` folder and replace all the contents of this file with the following code, this would add some styling to your dapp:
+
 ```css
 .main {
   min-height: 90vh;
@@ -554,7 +578,8 @@ Download this [image](https://github.com/gaubrey1/celo-ico/blob/main/tutorial-im
 }
 ```
 
-- Open your `App.js` file under the `src` folder and paste the following code, explanation of the code can be found in the comments
+Open your `App.js` file under the `src` folder and paste the following code, explanation of the code can be found in the comments:
+
 ```js
 import { Contract, providers, utils, BigNumber } from "ethers";
 import React, { useEffect, useRef, useState } from "react";
@@ -696,7 +721,7 @@ function App () {
         );
         // call the owner function from the contract
         const _owner = await nftContract.owner();
-        // we get signer to extract address of currently connected Metamask account
+        // we get signer to extract address of the currently connected Metamask account
         const signer = await getProviderOrSigner(true);
         // Get the address associated to signer which is connected to Metamask
         const address = await signer.getAddress();
@@ -713,7 +738,7 @@ function App () {
     const getBalanceOfMintifyTokens = async () => {
       try {
         // Get the provider from web3Modal, which in our case is MetaMask
-        // No need for the Signer here, as we are only reading state from the blockchain
+        // No need for the signer here, as we are only reading state from the blockchain
         const provider = await getProviderOrSigner();
         // Create an instace of token contract
         const tokenContract = new Contract(
@@ -919,7 +944,7 @@ export default App;
 
 ```
 
-- Now create a new folder under the `src` folder and name it `constants`. In the `constants` folder create a file called `index.js` and paste the following code:
+Now create a new folder under the `src` folder and name it `constants`. In the `constants` folder create a file called `index.js` and paste the following code:
 ```js
 export const mintifyNftAbi = abi-of-your-nft-contract;
 export const mintifyNftAddress = "address-of-your-nft-contract";
@@ -927,43 +952,43 @@ export const mintifyTokenAbi = abi-of-your-token-contract;
 export const mintifyTokenAddress = "address-of-your-token-contract";
 ```
 
-Replace "abi-of-your-nft-contract" and "address-of-your-nft-contract" with the abi and address of the NFT contract that you deployed respectively. This can be found in the `mintifyNft-address.json` file(for the address) and `mintifyNft.json` file (for the abi) in the `mintifyNft` folder of the `hardhat` directory.
+Replace `abi-of-your-nft-contract` and `address-of-your-nft-contract` with the ABI and address of the NFT contract that you deployed respectively. This can be found in the `mintifyNft-address.json` file(for the address) and `mintifyNft.json` file (for the abi) in the `mintifyNft` folder of the `hardhat` directory.
 
 
-Replace "abi-of-your-token-contract" and "address-of-your-token-contract" with the abi and address of the token contract that you deployed respectively. This can be found in the the `mintifyToken-address.json` file(for the address) and `mintifyToken.json` file (for the abi) in the `mintifyToken` folder of the `hardhat` directory.
+Replace `abi-of-your-token-contract` and `address-of-your-token-contract` with the ABI and address of the token contract that you deployed respectively. This can be found in the `mintifyToken-address.json` file(for the address) and `mintifyToken.json` file (for the abi) in the `mintifyToken` folder of the `hardhat` directory.
 
-Your project should look somehting like this
+Your project should look something like this
 
 ![](https://github.com/gaubrey1/celo-ico/blob/main/tutorial-images/final-project.png)
 
 Your ICO and NFT dapp should now work without errors 🚀.
 
-To test your project, you'll need two accounts created on metamask. To do this, read this [article](https://digitalpinas.com/create-metamask-account/#:~:text=How%20to%20create%20Additional%20Metamask%20Account%20on%20Browser,click%20%E2%80%9CCreate%E2%80%9D%20to%20have%20an%20additional%20Metamask%20account.) for more details.
+To test your project, you'll need two accounts created on Metamask. To do this, read this [article](https://digitalpinas.com/create-metamask-account/#:~:text=How%20to%20create%20Additional%20Metamask%20Account%20on%20Browser,click%20%E2%80%9CCreate%E2%80%9D%20to%20have%20an%20additional%20Metamask%20account.) for more details.
 
-Account 1 will be the account that deploys the smart contracts while Account 2 will be the account that mints the nft and gets rewarded with the ICO.
+Account 1 will be the account that deploys the smart contracts while Account 2 will be the account that mints the NFT and gets rewarded with the ICO.
 
-> Note: The first Account created in metamask is by default Account 1. This is the account that deploys the smart contract. Account 1 will be able to withdraw funds sent by Account 2 as payment for minting the nft.
+>**_Note_**: The first Account created in Metamask is by default Account 1. This is the account that deploys the smart contract. Account 1 will be able to withdraw funds sent by Account 2 as payment for minting the NFT.
 
 ## Pushing Code to Github
 After testing your dapp and checking that everything behaves correctly, upload your project to a new GitHub repository. Instructions on how to do this can be found [here](https://www.git-tower.com/learn/git/faq/push-to-github/).
 
-If needed, you can create a readme file for your project that explains your dapp and includes a link to your Dapp.
+If needed, you can create a *readme* file for your project that explains your dapp and includes a link to your dapp.
 
 ## Deploying to Vercel
 We will now deploy your dapp so that everyone can see your website and you can share it with everyone.
 
-To deploy our dapp we will be using vercel. Vercel is the platform for frontend developers, providing the speed and reliability innovators need to create at the moment of inspiration. To get started;
-1.  Go to [Vercel](https://vercel.com), click on the sign up button, fill select the appropriate options displayed and continue the sign up with your GitHub.
+To deploy our dapp we will be using Vercel. Vercel is the platform for front-end developers, providing the speed and reliability innovators need to create at the moment of inspiration. To get started;
+1.  Go to [Vercel](https://vercel.com), click on the *sign-up* button, fill select the appropriate options displayed and continue the sign-up with your GitHub.
 
 ![](https://github.com/gaubrey1/celo-ico/blob/main/tutorial-images/vercel.png)
 
-2.  Click on Add New button, select Project from the dropdown menu,
-3.  If this is your first time using vercel, you'll need to install vercel in your Github account. To do this, click the Add Github Account dropdown and follow the prompt shown. This will automatically show all your repository in your Github account. Select your Celo-ICO repo from the options given and import it
-4.  When configuring your new project, Vercel will allow you to customize your Root Directory. For this project, our root directory is `my-app`. Click on the edit button to change the root directory to `my-app`.
+2.  Click on **Add New button**, select **Project** from the dropdown menu,
+3.  If this is your first time using Vercel, you'll need to install Vercel in your GitHub account. To do this, click on the **Add Github Account** dropdown and follow the prompt shown. This will automatically show all your repositories in your GitHub account. Select your Celo-ICO repo from the options given and import it
+4.  When configuring your new project, Vercel will allow you to customize your *root* Directory. For this project, our *root* directory is `my-app`. Click on the **edit** button to change the *root* directory to `my-app`.
 5.  Select the framework as `Create React App`
 6.  Click Deploy. This will take a while to complete
 
 Now you can see your deployed website by going to your dashboard, selecting your project, and copying the URL beneath domains!
 
 ## Conclusion
-That’s it! Congratulations! You are done with the tutorial, in this tutorial have built a dapp using react, hardhat, solidity and the Celo blockchain, pushed your code to Github, and deployed it to Vercel! 🎉
+That’s it! Congratulations! You are done with the tutorial, in this tutorial have built a dapp using React, Hardhat, Solidity, and the Celo blockchain, pushed your code to Github, and deployed it to Vercel! 🎉
